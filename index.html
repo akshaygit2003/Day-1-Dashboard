@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics Dashboard - Omniful</title>
+    <meta
+      name="description"
+      content="Modern analytics dashboard with comprehensive business metrics and real-time data visualization"
+    />
+    <meta name="author" content="Omniful Team" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Analytics Dashboard - Omniful" />
+    <meta
+      property="og:description"
+      content="Modern analytics dashboard with comprehensive business metrics"
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%234f46e5'/><text y='70' font-size='80' fill='white'>📊</text></svg>"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Analytics Dashboard",
+        "description": "Modern analytics dashboard with comprehensive business metrics",
+        "applicationCategory": "BusinessApplication"
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Skip Link for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Live Region for Dynamic Updates -->
+    <div
+      id="live-region"
+      aria-live="polite"
+      aria-atomic="true"
+      class="sr-only"
+    ></div>
+
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <div class="dashboard-container">
+      <!-- Header -->
+      <header class="dashboard-header" role="banner">
+        <div class="header-brand">
+          <!-- Hamburger menu button for mobile -->
+          <button
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="sidebar-nav"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <span class="brand-logo" role="img" aria-label="Dashboard">📊</span>
+          <h1 class="brand-title">Analytics Dashboard</h1>
+        </div>
+        <div class="header-controls">
+          <button
+            class="notification-btn"
+            aria-label="Notifications (3 unread)"
+            aria-describedby="notification-count"
+          >
+            🔔
+          </button>
+          <span id="notification-count" class="sr-only"
+            >You have 3 unread notifications</span
+          >
+
+          <button
+            class="profile-btn"
+            aria-label="User profile menu"
+            aria-expanded="false"
+            aria-haspopup="menu"
+          >
+            👤
+          </button>
+        </div>
+      </header>
+
+      <!-- Sidebar Navigation -->
+      <nav
+        class="dashboard-sidebar"
+        id="sidebar-nav"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#overview" class="nav-link" aria-current="page">
+              <span class="nav-icon" role="img" aria-label="Overview">📈</span>
+              Overview
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#analytics" class="nav-link">
+              <span class="nav-icon" role="img" aria-label="Analytics">📊</span>
+              Analytics
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#reports" class="nav-link">
+              <span class="nav-icon" role="img" aria-label="Reports">📋</span>
+              Reports
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#users" class="nav-link">
+              <span class="nav-icon" role="img" aria-label="Users">👥</span>
+              Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#settings" class="nav-link">
+              <span class="nav-icon" role="img" aria-label="Settings">⚙️</span>
+              Settings
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="dashboard-main" id="main-content" role="main">
+        <!-- Page Header -->
+        <header class="main-header">
+          <h2 class="main-title">Welcome back, Admin</h2>
+          <p class="main-subtitle">
+            Here's what's happening with your business today.
+          </p>
+        </header>
+
+        <!-- Key Metrics -->
+        <section aria-labelledby="metrics-heading">
+          <h3 id="metrics-heading" class="sr-only">Key Performance Metrics</h3>
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-header">
+                <h4 class="stat-title">Total Revenue</h4>
+                <span class="stat-icon" role="img" aria-label="Revenue"
+                  >💰</span
+                >
+              </div>
+              <div class="stat-value" aria-label="$45,231">$45,231</div>
+              <div class="stat-change positive" aria-label="12% increase">
+                <span role="img" aria-label="Increase">↗️</span>
+                +12% from last month
+              </div>
+            </article>
+
+            <article class="stat-card success">
+              <div class="stat-header">
+                <h4 class="stat-title">New Customers</h4>
+                <span class="stat-icon" role="img" aria-label="Customers"
+                  >👥</span
+                >
+              </div>
+              <div class="stat-value" aria-label="1,429">1,429</div>
+              <div class="stat-change positive" aria-label="8% increase">
+                <span role="img" aria-label="Increase">↗️</span>
+                +8% from last month
+              </div>
+            </article>
+
+            <article class="stat-card warning">
+              <div class="stat-header">
+                <h4 class="stat-title">Active Users</h4>
+                <span class="stat-icon" role="img" aria-label="Active users"
+                  >🔥</span
+                >
+              </div>
+              <div class="stat-value" aria-label="12,543">12,543</div>
+              <div class="stat-change negative" aria-label="3% decrease">
+                <span role="img" aria-label="Decrease">↘️</span>
+                -3% from last month
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Content Grid -->
+        <section class="content-grid">
+          <!-- Analytics Chart -->
+          <article class="content-card">
+            <header class="card-header">
+              <h3 class="card-title">Revenue Analytics</h3>
+              <p class="card-subtitle">
+                Monthly revenue trend over the last 12 months
+              </p>
+            </header>
+            <div class="card-content">
+              <div
+                class="chart-placeholder"
+                role="img"
+                aria-label="Revenue chart showing upward trend over 12 months"
+              >
+                📊 Interactive Chart Would Load Here
+              </div>
+            </div>
+          </article>
+
+          <!-- Recent Activity -->
+          <article class="content-card">
+            <header class="card-header">
+              <h3 class="card-title">Recent Activity</h3>
+              <p class="card-subtitle">
+                Latest user actions and system updates
+              </p>
+            </header>
+            <div class="card-content">
+              <ul class="activity-list" role="list">
+                <li class="activity-item" role="listitem">
+                  <div
+                    class="activity-icon"
+                    role="img"
+                    aria-label="User action"
+                  >
+                    👤
+                  </div>
+                  <div class="activity-content">
+                    <p class="activity-text">New user registered</p>
+                    <time class="activity-time" datetime="2024-01-15T10:30:00"
+                      >2 minutes ago</time
+                    >
+                  </div>
+                </li>
+                <li class="activity-item" role="listitem">
+                  <div class="activity-icon" role="img" aria-label="Purchase">
+                    💳
+                  </div>
+                  <div class="activity-content">
+                    <p class="activity-text">Purchase completed - $299</p>
+                    <time class="activity-time" datetime="2024-01-15T10:25:00"
+                      >7 minutes ago</time
+                    >
+                  </div>
+                </li>
+                <li class="activity-item" role="listitem">
+                  <div class="activity-icon" role="img" aria-label="Report">
+                    📊
+                  </div>
+                  <div class="activity-content">
+                    <p class="activity-text">Monthly report generated</p>
+                    <time class="activity-time" datetime="2024-01-15T10:00:00"
+                      >32 minutes ago</time
+                    >
+                  </div>
+                </li>
+                <li class="activity-item" role="listitem">
+                  <div
+                    class="activity-icon"
+                    role="img"
+                    aria-label="System update"
+                  >
+                    ⚙️
+                  </div>
+                  <div class="activity-content">
+                    <p class="activity-text">System backup completed</p>
+                    <time class="activity-time" datetime="2024-01-15T09:45:00"
+                      >47 minutes ago</time
+                    >
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu toggle
+        const menuToggle = document.getElementById("menu-toggle");
+        const sidebar = document.getElementById("sidebar-nav");
+        const overlay = document.getElementById("sidebar-overlay");
+        const liveRegion = document.getElementById("live-region");
+
+        function toggleMenu() {
+          const isExpanded =
+            menuToggle.getAttribute("aria-expanded") === "true";
+
+          menuToggle.setAttribute("aria-expanded", !isExpanded);
+          menuToggle.classList.toggle("active");
+          sidebar.classList.toggle("active");
+          overlay.classList.toggle("active");
+
+          // Announce for screen readers
+          announceUpdate(
+            isExpanded ? "Navigation menu closed" : "Navigation menu opened"
+          );
+
+          // Prevent body scrolling when menu is open
+          document.body.style.overflow = isExpanded ? "" : "hidden";
+        }
+
+        menuToggle.addEventListener("click", toggleMenu);
+
+        // Close menu when clicking outside
+        overlay.addEventListener("click", function () {
+          if (sidebar.classList.contains("active")) {
+            toggleMenu();
+          }
+        });
+
+        // Close menu with Escape key
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && sidebar.classList.contains("active")) {
+            toggleMenu();
+          }
+        });
+
+        // Close menu when clicking a nav item on mobile
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            if (
+              window.innerWidth <= 768 &&
+              sidebar.classList.contains("active")
+            ) {
+              toggleMenu();
+            }
+          });
+        });
+
+        // Resize handler to reset mobile menu state when switching to desktop
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 768 && sidebar.classList.contains("active")) {
+            menuToggle.classList.remove("active");
+            sidebar.classList.remove("active");
+            overlay.classList.remove("active");
+            document.body.style.overflow = "";
+            menuToggle.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        // Focus management
+        const focusableElements = document.querySelectorAll(
+          "a, button, input, textarea, select, [tabindex]"
+        );
+
+        focusableElements.forEach((element) => {
+          element.addEventListener("focus", function () {
+            this.classList.add("focus-visible");
+          });
+
+          element.addEventListener("blur", function () {
+            this.classList.remove("focus-visible");
+          });
+        });
+
+        // Live region announcements
+        function announceUpdate(message) {
+          liveRegion.textContent = message;
+          setTimeout(() => {
+            liveRegion.textContent = "";
+          }, 1000);
+        }
+
+        // Announce stats update (example)
+        setTimeout(() => {
+          announceUpdate(
+            "Dashboard metrics have been updated with the latest data"
+          );
+        }, 3000);
+
+        // Profile menu toggle
+        const profileBtn = document.querySelector(".profile-btn");
+
+        profileBtn.addEventListener("click", function () {
+          const expanded = this.getAttribute("aria-expanded") === "true";
+          this.setAttribute("aria-expanded", !expanded);
+          announceUpdate(
+            expanded ? "Profile menu closed" : "Profile menu opened"
+          );
+        });
+
+        // Keyboard handling for navigation links
+        navLinks.forEach((link) => {
+          link.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              this.click();
+            }
+          });
+        });
+
+        // Announce current page
+        const currentPage = document.querySelector('[aria-current="page"]');
+        if (currentPage) {
+          announceUpdate(
+            `Currently viewing ${currentPage.textContent.trim()} page`
+          );
+        }
+      });
+    </script>
+  </body>
+</html>
