@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessible Dropdown Navigation</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+      }
+
+      nav {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+      }
+
+      li {
+        margin-right: 20px;
+        position: relative;
+      }
+
+      a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        color: black;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        min-width: 150px;
+        z-index: 10;
+        display: none;
+      }
+
+      .dropdown-menu a {
+        color: black;
+        padding: 8px 12px;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: #eee;
+      }
+
+      li:hover > .dropdown-menu {
+        display: block;
+      }
+
+      button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: inherit;
+        cursor: pointer;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      button:focus {
+        outline: 2px solid yellow;
+      }
+
+      .dropdown-menu a:focus {
+        outline: 2px solid yellow;
+      }
+
+      .arrow {
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+        transform: rotate(45deg);
+      }
+
+      #content-area {
+        padding: 20px;
+      }
+
+      .content-section {
+        display: none;
+        padding: 20px;
+        border: 1px solid #ddd;
+        margin-top: 20px;
+      }
+
+      .content-section h2 {
+        margin-top: 0;
+      }
+
+      .content-section.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+
+        <li>
+          <button
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="products-button"
+          >
+            Products
+            <span class="arrow"></span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="products-button">
+            <a href="#" data-content="product1">Product 1</a>
+            <a href="#" data-content="product2">Product 2</a>
+            <a href="#" data-content="product3">Product 3</a>
+          </div>
+        </li>
+
+        <li>
+          <button
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="services-button"
+          >
+            Services
+            <span class="arrow"></span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="services-button">
+            <a href="#" data-content="service1">Service 1</a>
+            <a href="#" data-content="service2">Service 2</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="content-area">
+      <div id="product1" class="content-section">
+        <h2>Product 1</h2>
+        <p>Details about Product 1.</p>
+      </div>
+
+      <div id="product2" class="content-section">
+        <h2>Product 2</h2>
+        <p>Details about Product 2.</p>
+      </div>
+
+      <div id="product3" class="content-section">
+        <h2>Product 3</h2>
+        <p>Details about Product 3.</p>
+      </div>
+
+      <div id="service1" class="content-section">
+        <h2>Service 1</h2>
+        <p>Details about Service 1.</p>
+      </div>
+
+      <div id="service2" class="content-section">
+        <h2>Service 2</h2>
+        <p>Details about Service 2.</p>
+      </div>
+    </div>
+
+    <script>
+      const dropdownLinks = document.querySelectorAll(".dropdown-menu a");
+      const contentSections = document.querySelectorAll(".content-section");
+
+      function hideAllContent() {
+        contentSections.forEach((section) => {
+          section.classList.remove("active");
+        });
+      }
+
+      dropdownLinks.forEach((link) => {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+
+          const targetContentId = this.dataset.content;
+          hideAllContent();
+
+          const targetContent = document.getElementById(targetContentId);
+          if (targetContent) {
+            targetContent.classList.add("active");
+          }
+        });
+      });
+
+      const dropdownButtons = document.querySelectorAll(
+        'nav button[aria-haspopup="true"]'
+      );
+
+      dropdownButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const expanded =
+            this.getAttribute("aria-expanded") === "true" || false;
+          this.setAttribute("aria-expanded", !expanded);
+
+          dropdownButtons.forEach((otherButton) => {
+            if (otherButton !== button) {
+              otherButton.setAttribute("aria-expanded", false);
+            }
+          });
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        dropdownButtons.forEach((button) => {
+          if (
+            !button.contains(event.target) &&
+            !button.nextElementSibling.contains(event.target)
+          ) {
+            button.setAttribute("aria-expanded", false);
+          }
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          dropdownButtons.forEach((button) => {
+            button.setAttribute("aria-expanded", false);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
